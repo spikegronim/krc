@@ -125,13 +125,19 @@ void oneten()
 
 void oneeleven()
 {
+    /* running a bunch of stuff through it */
+    /* something with a lot of characters in it. */
+}
+
+void onetwelve()
+{
     char c;
     char out = false;
     while ((c = getchar()) != EOF) {
-        if (c == ' ' && !out) {
+        if ((c == ' ' || c == '\t') && !out) {
             putchar('\n');
             out = true;
-        } else if (out && c == ' ') {
+        } else if ((c == ' ' || c == '\t') && out) {
             ;
         } else if (out && c != ' ') {
             putchar(c);
@@ -154,6 +160,6 @@ int main()
     /* oneeight(); */
     /* onenine(); */
     /* oneten(); */
-    /* oneeleven(); */
+    /* onetwelve(); */
     return 0;
 }
