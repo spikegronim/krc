@@ -1,32 +1,61 @@
 #include <stdio.h>
-#include <stdbool.h>
+/* #include <ctype.h> */
+/* lulz YOCO */
+
+#define FALSE 0
+#define TRUE 1
+
+void printer(int *lengths)
+{
+    int i;
+    for (i = 0; i < 31; i++) {
+            printf("%5i : ", i);
+        for (int inde = 0; inde < lengths[i]; inde++)
+        {
+           putchar('#');
+        }
+        putchar('\n');
+    }
+}
+
+int isspace(char c)
+{
+    switch (c)
+    case ' '  :
+    case '\t' :
+    case '\n' :
+    case '\v' :
+    case '\f' :
+    case '\r' : return TRUE;
+    return FALSE;
+}
 
 int main()
 {
-    int lengths[50];
+    int lengths[30];
 
-    char c;
-    char in = false;
-
-    int count_word = 0;
-
-    int i;
-    for (i = 0; i < 50; ++i)
+    for (int i = 0; i < 31; ++i)
+    {
         lengths[i] = 0;
-
-    while ((c = getchar()) != EOF) {
-        if (c != ' ' && c != '\t')
-            in = true;
-
-        if (in)
-            count_word++;
-
-        if (!in) {
-            lengths[count_word]++;
-            count_word = 0;
-        }
-
     }
 
+    char c;
+    int in;
+
+    int count = 0;
+    while ((c = getchar()) != EOF) {
+        if (isspace(c))
+        {
+            if (count != 0)
+                lengths[count]++;
+            in = FALSE;
+            count = 0;
+        } else {
+            in = TRUE;
+            count++;
+        }
+    }
+
+    printer(lengths);
     return 0;
 }
