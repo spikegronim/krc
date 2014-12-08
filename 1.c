@@ -162,6 +162,8 @@ void onefourteen()
         printf("%4c : %i\n", i, lengths[i]);
 }
 
+/* 1-15 is unnecessary */
+
 int main()
 {
     /* oneone(); */
