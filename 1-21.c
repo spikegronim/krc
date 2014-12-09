@@ -8,24 +8,26 @@ int main()
     int loc = 0;
     int count = 0;
     char c;
+
     while ((c = getchar()) != EOF) {
-        if (c == '\t') {
-            count += TABWIDTH - loc;
-            loc += TABWIDTH - loc;
+        if (c == '\n') {
+            putchar(c);
+            loc = 0;
+        } else if (c == '\t') {
+            count +=  (TABWIDTH - (loc % TABWIDTH));
+            loc +=  (TABWIDTH - (loc % TABWIDTH));
         } else if (c == ' ') {
             count++;
             loc++;
         } else {
             if (count != 0) {
-                for (int i = 0; i < (count); i++)
+                for (int i = 0; i < count; i++)
                     putchar(' ');
                 count = 0;
             }
             putchar(c);
+            loc++;
         }
-        loc++;
-        if (loc == TABWIDTH )
-            loc = 0;
     }
     return 0;
 }
