@@ -24,7 +24,7 @@ int main()
             loc++;
         } else {
             if (count != 0) {
-                if (count > TABWIDTH - (spot % TABWIDTH)) {
+                if (count >= TABWIDTH - (spot % TABWIDTH)) {
                     putchar('\t');
                     count -= TABWIDTH - (spot % TABWIDTH);
                 }
