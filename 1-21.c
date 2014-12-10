@@ -29,6 +29,11 @@ int main()
                     count -= TABWIDTH - (spot % TABWIDTH);
                 }
 
+                while (count >= TABWIDTH) {
+                    putchar('\t');
+                    count -= TABWIDTH;
+                }
+
                 for (int i = 0; i < count; i++)
                     putchar(' ');
                 count = 0;
