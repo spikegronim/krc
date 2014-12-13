@@ -10,6 +10,15 @@ int main()
     int inacomment = FALSE;
     int inastring = FALSE;
 
+    /* is it going to work? */
+
+    /* is it going to work?
+       on multi-line strings, why yes it did!    */
+
+    /* is it going to work on char constants? */
+    char test = '/';
+    /* woooooot */
+
     while((c = getchar()) != EOF) {
         if (c == '"')
           inastring = (inastring) ? FALSE : TRUE ;
@@ -25,6 +34,10 @@ int main()
                 } else {
                 inacomment = TRUE;
                 }
+            } else if (derp == '\047'){
+                putchar(c);
+                putchar('\047');
+                derp = 0;
             } else {
                 putchar(c);
             }
