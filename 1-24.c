@@ -11,7 +11,7 @@
 int inacomment = FALSE;
 int inastring = FALSE;
 
-int tracker[4];
+int tracker[0];
 char c;
 char derp;
 
@@ -30,50 +30,46 @@ int main ()
 
     while((c = getchar()) != EOF)
     {
-        /* if (c == '"') */
-        /*     inastring = (inastring) ? FALSE : TRUE ; */
+        if (c == '"')
+            inastring = (inastring) ? FALSE : TRUE ;
 
-        /* if (c == '/' &&  (derp = getchar()) == '*') */
-        /*     if (!inastring) */
-        /*         inacomment = TRUE; */
+        if (c == '/' &&  (derp = getchar()) == '*')
+            if (!inastring)
+                inacomment = TRUE;
 
-        /* if (c == '*' &&  (derp = getchar()) == '/' && !inastring) */
-        /*     inacomment = FALSE; */
+        if (c == '*' &&  (derp = getchar()) == '/' && !inastring)
+            inacomment = FALSE;
 
-        if (c == '(')
-            tracker[PAREN]++;
-        else if (c == ')')
-            tracker[PAREN]--;
+        if (!inacomment)
+        {
+            if (c == '(')
+                tracker[PAREN]++;
+            else if (c == ')')
+                tracker[PAREN]--;
 
-        else if (c == '[')
-            tracker[BRACKET]++;
-        else if (c == ']')
-            tracker[BRACKET]--;
+            else if (c == '[')
+                tracker[BRACKET]++;
+            else if (c == ']')
+                tracker[BRACKET]--;
 
-        else if (c == '{')
-            tracker[TUBORG]++;
-        else if (c == '}')
-            tracker[TUBORG]--;
+            else if (c == '{')
+                tracker[TUBORG]++;
+            else if (c == '}')
+                tracker[TUBORG]--;
 
-        else if (c == '<')
-            tracker[ANGLED]++;
-        else if (c == '>')
-            tracker[ANGLED]--;
-        /* else if (c == '\n') { */
-        /*     printf("Parens: %i\nBrackets: %i\nTuborgs: %i\nAngles: %i\n", */
-        /*             tracker[PAREN], */
-        /*             tracker[BRACKET], */
-        /*             tracker[TUBORG], */
-        /*             tracker[ANGLED]); */
-        /* } */
-
+            else if (c == '<')
+                tracker[ANGLED]++;
+            else if (c == '>')
+                tracker[ANGLED]--;
+        }
     }
 
-    printf("Parens: %i\nBrackets: %i\nTuborgs: %i\nAngles: %i\n",
+    printf("Parens: %i\nBrackets: %i\nTuborgs: %i\nAngles: %i\nDouble quotes matched? %s\n",
             tracker[PAREN],
             tracker[BRACKET],
             tracker[TUBORG],
-            tracker[ANGLED]);
+            tracker[ANGLED],
+            (inastring ? "No" : "Yes"));
 
     return 0;
 
